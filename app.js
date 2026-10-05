@@ -107,7 +107,9 @@ async function boot() {
   const { data: { session } } = await sb.auth.getSession();
   if (session) showLibrary(session);
   else showGate();
-  sb.auth.onAuthStateChange((_e, s) => { if (!s) location.reload(); });
+  sb.auth.onAuthStateChange((event) => {
+    if (event === "SIGNED_OUT") location.reload();
+  });
 }
 
 $("#login-form").addEventListener("submit", async (e) => {
