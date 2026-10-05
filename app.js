@@ -171,6 +171,18 @@ async function showLibrary(session) {
 }
 
 let springGen = 0;
+let skinCSS = null;
+const skinPromise = fetch("doc.css").then((res) => (res.ok ? res.text() : "")).catch(() => "");
+
+async function dress(html) {
+  if (skinCSS == null) skinCSS = await skinPromise;
+  const source = String(html ?? "");
+  if (!skinCSS || source.includes("inner-map-skin")) return source;
+  const tag = `<style id="inner-map-skin">${skinCSS}</style>`;
+  if (/<\/body>/i.test(source)) return source.replace(/<\/body>/i, `${tag}</body>`);
+  return source + tag;
+}
+
 
 function springReader(open) {
   const el = $("#reader");
@@ -274,7 +286,7 @@ async function openDoc(slug) {
     $("#reader-live").textContent = LOAD_ERROR;
     return;
   }
-  currentHtml = data.html;
+  currentHtml = await dress(data.html);
   frame.srcdoc = currentHtml;
   $("#newtab").disabled = false;
   requestAnimationFrame(() => {
