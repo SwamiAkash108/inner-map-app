@@ -349,11 +349,51 @@ $("#newtab").addEventListener("click", () => {
   window.open(URL.createObjectURL(blob), "_blank");
 });
 document.addEventListener("keydown", onReaderKey);
+function rgbOf(color) {
+  const match = String(color).match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
+  if (!match) return null;
+  if (match[4] != null && Number(match[4]) === 0) return null;
+  return [Number(match[1]), Number(match[2]), Number(match[3])];
+}
+
+function appleSurface(rgb) {
+  if (!rgb) return null;
+  const [r, g, b] = rgb;
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  if (max < 210 || r < b || max - min < 6) return null;
+  if (min > 236) return "#ffffff";
+  if (min > 185) return "#f5f5f7";
+  return null;
+}
+
+function applePaint(doc) {
+  if (!doc || !doc.body || doc.documentElement.dataset.apple === "1") return;
+  doc.documentElement.dataset.apple = "1";
+  doc.documentElement.style.setProperty("background", "#f5f5f7", "important");
+  doc.body.style.setProperty("background", "#f5f5f7", "important");
+  doc.body.style.setProperty("color", "#1d1d1f", "important");
+  const font = '-apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif';
+  doc.body.style.setProperty("font-family", font, "important");
+  doc.querySelectorAll("body *").forEach((el) => {
+    if (el.closest("svg, pre, code, canvas")) return;
+    const cs = doc.defaultView.getComputedStyle(el);
+    el.style.setProperty("font-family", font, "important");
+    const surface = appleSurface(rgbOf(cs.backgroundColor));
+    if (surface) el.style.setProperty("background-color", surface, "important");
+    const border = appleSurface(rgbOf(cs.borderTopColor));
+    if (border && cs.borderTopWidth !== "0px") {
+      el.style.setProperty("border-color", "rgba(0,0,0,0.08)", "important");
+    }
+  });
+}
+
 $("#oframe").addEventListener("load", () => {
   const frame = $("#oframe");
   if (!frame.srcdoc) return;
   try {
     frame.contentDocument.addEventListener("keydown", onReaderKey);
+    applePaint(frame.contentDocument);
   } catch (_) {}
 });
 

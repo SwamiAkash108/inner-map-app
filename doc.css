@@ -1,10 +1,14 @@
 /* Applied only when a stored document is shown. Does not change the saved HTML. */
 :root {
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --ink: #1d1d1f;
-  --soft: #6e6e73;
-  --bg: #f5f5f7;
-  --blue: #0071e3;
+  --ink: #1d1d1f !important;
+  --ink-soft: #6e6e73 !important;
+  --soft: #6e6e73 !important;
+  --paper: #f5f5f7 !important;
+  --card: #ffffff !important;
+  --bg: #f5f5f7 !important;
+  --line: rgba(0, 0, 0, 0.08) !important;
+  --blue: #0071e3 !important;
   --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", system-ui, sans-serif;
 }
 
@@ -33,9 +37,18 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6,
-p, li, td, th, blockquote, figcaption, label, span, div, section, article, header, footer, a {
+body :where(h1, h2, h3, h4, h5, h6, p, li, td, th, blockquote, figcaption, label, span, div, section, article, header, footer, a, button) {
   font-family: var(--font) !important;
+}
+
+[style*="faf7f0"],
+[style*="FAF7F0"],
+[style*="fffdf8"],
+[style*="FFFDF8"],
+[style*="250, 247, 240"],
+[style*="255, 253, 248"] {
+  background: #f5f5f7 !important;
+  background-color: #f5f5f7 !important;
 }
 
 h1, h2, h3, h4 {
