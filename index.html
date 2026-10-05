@@ -3,12 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#faf7f0">
+<meta name="theme-color" content="#f5f5f7">
 <title>The Inner Map</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23faf7f0'/%3E%3Cpath d='M16 6.5 25.5 16 16 25.5 6.5 16Z' fill='%23b8862e'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231d1d1f'/%3E%3Ccircle cx='16' cy='16' r='5' fill='none' stroke='%23f5f5f7' stroke-width='1.5'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -18,84 +15,73 @@
 
 <main id="gate" class="gate hidden">
   <div class="gate-inner">
-    <p class="kicker rise" style="--d: 0ms">Enneagram · Jyotish · The Work</p>
-    <div class="ornament rise" style="--d: 100ms" aria-hidden="true">
-      <span class="ornament-line"></span>
-      <span class="ornament-diamond"></span>
-      <span class="ornament-line"></span>
-    </div>
-    <h1 class="title rise" style="--d: 100ms">The Inner Map</h1>
-    <p class="sub rise" style="--d: 200ms">A private library of verified typings, charts, and the growth plan</p>
+    <p class="eyebrow rise" style="--d: 40ms">Enneagram · Jyotish · The Work</p>
+    <h1 class="display rise" style="--d: 120ms" aria-label="The Inner Map">
+      <span class="word" style="--d: 0ms">The</span>
+      <span class="word" style="--d: 70ms">Inner</span>
+      <span class="word" style="--d: 140ms">Map.</span>
+    </h1>
+    <p class="lede rise" style="--d: 280ms">A private library of verified typings, charts, and the growth plan.</p>
 
-    <div class="bezel rise rise-blur" style="--d: 300ms">
-      <form id="login-form" class="core" novalidate>
-        <div class="field">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false">
-        </div>
-        <div class="field">
-          <label for="pass">Password</label>
-          <input id="pass" name="password" type="password" autocomplete="current-password">
-        </div>
-        <button class="enter" id="login-btn" type="submit">
-          <span class="enter-label">Sign in</span>
-          <span class="enter-arrow" aria-hidden="true">
-            <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 8h10M9.5 4.5 13 8l-3.5 3.5"/>
-            </svg>
-          </span>
-        </button>
-        <p class="err" id="login-err" role="status" aria-live="polite"></p>
-      </form>
-    </div>
+    <form id="login-form" class="panel rise" style="--d: 400ms" novalidate>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false">
+      </div>
+      <div class="field">
+        <label for="pass">Password</label>
+        <input id="pass" name="password" type="password" autocomplete="current-password">
+      </div>
+      <button class="enter" id="login-btn" type="submit">
+        <span class="enter-label">Sign in</span>
+      </button>
+      <p class="err" id="login-err" role="status" aria-live="polite"></p>
+    </form>
   </div>
 </main>
 
 <main id="lib" class="lib hidden">
-  <div class="lib-intro">
-    <div class="account-row">
+  <header class="nav">
+    <p class="wordmark">The Inner Map</p>
+    <div class="nav-end">
       <p class="who" id="who"></p>
       <button class="text-btn" id="signout" type="button">Sign out</button>
     </div>
-    <header class="lib-mast">
-      <p class="kicker">Enneagram · Jyotish · The Work</p>
-      <div class="ornament" aria-hidden="true">
-        <span class="ornament-line"></span>
-        <span class="ornament-diamond"></span>
-        <span class="ornament-line"></span>
-      </div>
-      <h1 class="lib-title">The Inner Map</h1>
-      <p class="lib-sub">A private library of verified typings, charts, and the growth plan</p>
-      <div class="double-rule" aria-hidden="true"></div>
-    </header>
+  </header>
+
+  <div class="lib-intro">
+    <p class="eyebrow">Your library</p>
+    <h1 class="display display-lib">The Inner Map.</h1>
+    <p class="lede">A private library of verified typings, charts, and the growth plan.</p>
   </div>
+
   <div id="lib-status" class="lib-status" hidden></div>
-  <div id="sections"></div>
+  <div id="sections" class="sections"></div>
   <p class="foot">Content is served from a private database after sign-in. Nothing is stored in this site's files.</p>
 </main>
 
 <div id="reader" class="reader" role="dialog" aria-modal="true" aria-labelledby="otitle" aria-hidden="true" inert>
   <div class="reader-bar">
     <button class="text-btn back-btn" id="back" type="button">
-      <svg class="back-arrow" viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M13 8H3M6.5 4.5 3 8l3.5 3.5"/>
+      <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 3.5 5.5 8 10 12.5"/>
       </svg>
       Library
     </button>
     <h2 class="otitle" id="otitle"></h2>
     <div class="reader-nav">
       <button class="icon-btn" id="prev" type="button" aria-label="Previous document" disabled>
-        <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
           <path d="M10 3.5 5.5 8 10 12.5"/>
         </svg>
       </button>
       <button class="icon-btn" id="next" type="button" aria-label="Next document" disabled>
-        <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
           <path d="M6 3.5 10.5 8 6 12.5"/>
         </svg>
       </button>
+      <button class="text-btn" id="newtab" type="button" disabled>Open full page</button>
     </div>
-    <button class="text-btn" id="newtab" type="button" disabled>Open full page</button>
     <div class="progress" aria-hidden="true"></div>
   </div>
   <div class="reader-stage">
