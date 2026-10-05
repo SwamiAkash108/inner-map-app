@@ -3,165 +3,109 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#faf7f0">
 <title>The Inner Map</title>
-<style>
-  :root{
-    --paper:#faf7f0; --card:#fffdf8; --ink:#1c2437; --ink-soft:#4a5266;
-    --line:#e5dccb; --gold:#b8862e; --gold-deep:#8f6520; --gold-soft:#f4ead3;
-    --blue:#2e4a7a; --blue-soft:#e7edf7; --saffron:#c25e1e; --saffron-soft:#fdf0e2;
-    --red:#b3352c;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{background:var(--paper);color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.5;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 16px 60px;}
-  .wrap{max-width:860px;width:100%;margin:0 auto;}
-  .kicker{text-align:center;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-family:Helvetica,Arial,sans-serif;margin-bottom:8px;}
-  h1{text-align:center;font-size:34px;font-weight:normal;margin-bottom:6px;}
-  .sub{text-align:center;font-size:14.5px;color:var(--ink-soft);font-style:italic;margin-bottom:32px;}
-  .login-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 26px 22px;max-width:380px;margin:0 auto;box-shadow:0 8px 24px rgba(60,50,20,.08);}
-  .login-card label{display:block;font-family:Helvetica,Arial,sans-serif;font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);margin:12px 0 4px;}
-  .login-card input{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:8px;background:var(--paper);font-size:15px;font-family:inherit;color:var(--ink);}
-  .login-card input:focus{outline:none;border-color:var(--gold);}
-  .btn{display:block;width:100%;margin-top:18px;padding:12px;border:none;border-radius:8px;background:var(--ink);color:var(--paper);font-family:Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;}
-  .btn:hover{background:var(--gold-deep);}
-  .err{color:var(--red);font-size:13px;font-style:italic;margin-top:10px;text-align:center;min-height:18px;}
-  .hidden{display:none !important;}
-  h2{font-family:Helvetica,Arial,sans-serif;font-size:11.5px;letter-spacing:2.5px;text-transform:uppercase;margin:30px 0 12px;padding-top:20px;border-top:1px solid var(--line);}
-  h2.g{color:var(--gold);} h2.b{color:var(--blue);} h2.s{color:var(--saffron);} h2.n{color:var(--ink-soft);}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;}
-  .card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(60,50,20,.10);}
-  .card .t{font-size:16px;margin-bottom:3px;}
-  .card .d{font-size:12.5px;color:var(--ink-soft);}
-  .card .tag{display:inline-block;font-family:Helvetica,Arial,sans-serif;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border-radius:20px;margin-bottom:6px;}
-  .tag.g{background:var(--gold-soft);color:var(--gold-deep);}
-  .tag.b{background:var(--blue-soft);color:var(--blue);}
-  .tag.s{background:var(--saffron-soft);color:var(--saffron);}
-  .tag.n{background:#eee9dc;color:var(--ink-soft);}
-  .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
-  .who{font-size:12.5px;color:var(--ink-soft);font-style:italic;}
-  .signout{background:none;border:none;color:var(--gold-deep);font-family:Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-decoration:underline;}
-  .overlay{position:fixed;inset:0;background:var(--paper);z-index:50;display:flex;flex-direction:column;}
-  .obar{display:flex;align-items:center;gap:14px;padding:10px 18px;border-bottom:1px solid var(--line);background:var(--card);}
-  .obar .ot{font-size:16px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .obar button{border:1px solid var(--line);background:var(--paper);border-radius:8px;padding:7px 14px;font-family:Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;color:var(--ink);}
-  .obar button:hover{border-color:var(--gold);color:var(--gold-deep);}
-  .oframe{flex:1;border:none;width:100%;}
-  .foot{text-align:center;font-size:11px;color:var(--ink-soft);margin-top:44px;font-family:Helvetica,Arial,sans-serif;}
-  @media (max-width:640px){.grid{grid-template-columns:1fr;}}
-</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23faf7f0'/%3E%3Cpath d='M16 6.5 25.5 16 16 25.5 6.5 16Z' fill='%23b8862e'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="wrap">
-  <div class="kicker">Enneagram &middot; Jyotish &middot; The Work</div>
-  <h1>The Inner Map</h1>
-  <p class="sub">A private library of verified typings, charts, and the growth plan</p>
+<noscript>
+  <p class="noscript">JavaScript is required to enter the library.</p>
+</noscript>
 
-  <div id="login" class="login-card hidden">
-    <label for="email">Email</label>
-    <input id="email" type="email" autocomplete="email">
-    <label for="pass">Password</label>
-    <input id="pass" type="password" autocomplete="current-password">
-    <button class="btn" id="login-btn">Sign in</button>
-    <div class="err" id="login-err"></div>
-  </div>
+<main id="gate" class="gate hidden">
+  <div class="gate-inner">
+    <p class="kicker rise" style="--d: 0ms">Enneagram · Jyotish · The Work</p>
+    <div class="ornament rise" style="--d: 100ms" aria-hidden="true">
+      <span class="ornament-line"></span>
+      <span class="ornament-diamond"></span>
+      <span class="ornament-line"></span>
+    </div>
+    <h1 class="title rise" style="--d: 100ms">The Inner Map</h1>
+    <p class="sub rise" style="--d: 200ms">A private library of verified typings, charts, and the growth plan</p>
 
-  <div id="lib" class="hidden">
-    <div class="topbar"><span class="who" id="who"></span><button class="signout" id="signout">Sign out</button></div>
-    <div id="sections"></div>
-    <div class="foot">Content is served from a private database after sign-in. Nothing is stored in this site's files.</div>
+    <div class="bezel rise rise-blur" style="--d: 300ms">
+      <form id="login-form" class="core" novalidate>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false">
+        </div>
+        <div class="field">
+          <label for="pass">Password</label>
+          <input id="pass" name="password" type="password" autocomplete="current-password">
+        </div>
+        <button class="enter" id="login-btn" type="submit">
+          <span class="enter-label">Sign in</span>
+          <span class="enter-arrow" aria-hidden="true">
+            <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 8h10M9.5 4.5 13 8l-3.5 3.5"/>
+            </svg>
+          </span>
+        </button>
+        <p class="err" id="login-err" role="status" aria-live="polite"></p>
+      </form>
+    </div>
   </div>
-</div>
+</main>
 
-<div id="reader" class="overlay hidden">
-  <div class="obar">
-    <button id="back">&larr; Library</button>
-    <span class="ot" id="otitle"></span>
-    <button id="newtab">Open full page</button>
+<main id="lib" class="lib hidden">
+  <div class="lib-intro">
+    <div class="account-row">
+      <p class="who" id="who"></p>
+      <button class="text-btn" id="signout" type="button">Sign out</button>
+    </div>
+    <header class="lib-mast">
+      <p class="kicker">Enneagram · Jyotish · The Work</p>
+      <div class="ornament" aria-hidden="true">
+        <span class="ornament-line"></span>
+        <span class="ornament-diamond"></span>
+        <span class="ornament-line"></span>
+      </div>
+      <h1 class="lib-title">The Inner Map</h1>
+      <p class="lib-sub">A private library of verified typings, charts, and the growth plan</p>
+      <div class="double-rule" aria-hidden="true"></div>
+    </header>
   </div>
-  <iframe class="oframe" id="oframe" sandbox="allow-same-origin allow-scripts"></iframe>
+  <div id="lib-status" class="lib-status" hidden></div>
+  <div id="sections"></div>
+  <p class="foot">Content is served from a private database after sign-in. Nothing is stored in this site's files.</p>
+</main>
+
+<div id="reader" class="reader" role="dialog" aria-modal="true" aria-labelledby="otitle" aria-hidden="true" inert>
+  <div class="reader-bar">
+    <button class="text-btn back-btn" id="back" type="button">
+      <svg class="back-arrow" viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M13 8H3M6.5 4.5 3 8l3.5 3.5"/>
+      </svg>
+      Library
+    </button>
+    <h2 class="otitle" id="otitle"></h2>
+    <div class="reader-nav">
+      <button class="icon-btn" id="prev" type="button" aria-label="Previous document" disabled>
+        <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 3.5 5.5 8 10 12.5"/>
+        </svg>
+      </button>
+      <button class="icon-btn" id="next" type="button" aria-label="Next document" disabled>
+        <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 3.5 10.5 8 6 12.5"/>
+        </svg>
+      </button>
+    </div>
+    <button class="text-btn" id="newtab" type="button" disabled>Open full page</button>
+    <div class="progress" aria-hidden="true"></div>
+  </div>
+  <div class="reader-stage">
+    <p id="reader-status" class="reader-status" role="status" hidden></p>
+    <iframe class="oframe" id="oframe" title="Document" sandbox="allow-same-origin allow-scripts"></iframe>
+  </div>
+  <p id="reader-live" class="sr-only" aria-live="polite"></p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-<script>
-const SUPABASE_URL = "https://uiobotxnxfljeoqgfwyy.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_Owowsc5HUlFGaxytfGGFkw_aCzgsWZh";
-const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-const SECTION_ORDER = [
-  ["people",  "Enneagram — The People", "g"],
-  ["dyn",     "Enneagram — The Dynamics", "b"],
-  ["growth",  "The Growth Plan", "s"],
-  ["jyotish", "Jyotish — The Sky", "s"],
-  ["research","Research & Sources", "n"],
-];
-
-const $ = (s) => document.querySelector(s);
-
-async function boot() {
-  const { data: { session } } = await sb.auth.getSession();
-  if (session) showLibrary(session);
-  else { $("#login").classList.remove("hidden"); }
-  sb.auth.onAuthStateChange((_e, s) => { if (!s) location.reload(); });
-}
-
-$("#login-btn").onclick = async () => {
-  $("#login-err").textContent = "";
-  const email = $("#email").value.trim(), pass = $("#pass").value;
-  const { data, error } = await sb.auth.signInWithPassword({ email, password: pass });
-  if (error) { $("#login-err").textContent = "Sign-in failed. Check email and password."; return; }
-  $("#login").classList.add("hidden");
-  showLibrary(data.session);
-};
-$("#pass").addEventListener("keydown", e => { if (e.key === "Enter") $("#login-btn").click(); });
-
-$("#signout").onclick = async () => { await sb.auth.signOut(); };
-
-let DOCS = [];
-async function showLibrary(session) {
-  $("#who").textContent = session.user.email;
-  $("#lib").classList.remove("hidden");
-  const { data, error } = await sb.from("inner_docs").select("slug,title,section,tag,tag_class,descr").order("position");
-  if (error || !data || !data.length) {
-    $("#sections").innerHTML = '<p style="text-align:center;color:var(--ink-soft);font-style:italic;margin-top:30px;">The library is not set up yet. Run the setup SQL in Supabase first.</p>';
-    return;
-  }
-  DOCS = data;
-  let html = "";
-  for (const [key, label, cls] of SECTION_ORDER) {
-    const docs = DOCS.filter(d => d.section === key);
-    if (!docs.length && key !== "jyotish") continue;
-    html += `<h2 class="${cls}">${label}</h2><div class="grid">`;
-    if (!docs.length) {
-      html += `<div class="card" style="cursor:default;border-style:dashed;"><div class="d" style="font-style:italic;">In preparation — the birth chart is computed (Mesha lagna, Moon in Pushya). The full reading will appear here.</div></div>`;
-    }
-    for (const d of docs) {
-      html += `<div class="card" data-slug="${d.slug}"><span class="tag ${d.tag_class}">${d.tag}</span><div class="t">${d.title}</div><div class="d">${d.descr||""}</div></div>`;
-    }
-    html += `</div>`;
-  }
-  $("#sections").innerHTML = html;
-  document.querySelectorAll(".card[data-slug]").forEach(c => c.onclick = () => openDoc(c.dataset.slug));
-}
-
-let currentHtml = null;
-async function openDoc(slug) {
-  const meta = DOCS.find(d => d.slug === slug);
-  $("#otitle").textContent = meta ? meta.title : slug;
-  const { data, error } = await sb.from("inner_docs").select("html").eq("slug", slug).single();
-  if (error || !data) { alert("Could not load the document."); return; }
-  currentHtml = data.html;
-  $("#oframe").srcdoc = currentHtml;
-  $("#reader").classList.remove("hidden");
-  document.body.style.overflow = "hidden";
-}
-$("#back").onclick = () => { $("#reader").classList.add("hidden"); document.body.style.overflow = ""; $("#oframe").srcdoc = ""; currentHtml = null; };
-$("#newtab").onclick = () => {
-  if (!currentHtml) return;
-  const blob = new Blob([currentHtml], { type: "text/html" });
-  window.open(URL.createObjectURL(blob), "_blank");
-};
-
-boot();
-</script>
+<script src="app.js"></script>
 </body>
 </html>
